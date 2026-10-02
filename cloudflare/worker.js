@@ -7,9 +7,8 @@
 //   RUNPOD_API_KEY       runpod.io → Settings → API Keys
 //   RUNPOD_ENDPOINT_ID   your serverless endpoint's ID
 //   LORA_URL             direct download link to your LoRA .safetensors
-//   TRIGGER_WORD         e.g. zvx woman
 //   OWNER_ID             your Telegram ID (the bot tells you it on your first message)
-// Optional: LORA_STRENGTH (0.9), WIDTH (1024), HEIGHT (1536)
+// Optional: TRIGGER_WORD (added to prompts that don't start with it), LORA_STRENGTH (0.9), WIDTH (1024), HEIGHT (1536)
 
 const HELP = [
   "👋 Send me what you want to see, for example:",
@@ -17,7 +16,7 @@ const HELP = [
   "beach club, white bikini, golden hour",
   "mirror selfie in a hotel bathroom, black satin dress",
   "",
-  "I add your trigger word for you. Don't describe her face or hair: the LoRA knows her.",
+  "Start with your trigger word. Don't describe her face or hair: the LoRA knows her.",
   "The first photo after a break takes 1–2 minutes (the GPU wakes up), then a few seconds each.",
 ].join("\n");
 
@@ -26,7 +25,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/setup") {
-      const missing = ["TELEGRAM_BOT_TOKEN", "RUNPOD_API_KEY", "RUNPOD_ENDPOINT_ID", "LORA_URL", "TRIGGER_WORD"]
+      const missing = ["TELEGRAM_BOT_TOKEN", "RUNPOD_API_KEY", "RUNPOD_ENDPOINT_ID", "LORA_URL"]
         .filter((k) => !env[k]);
       if (missing.length) return text(`❌ Missing variables: ${missing.join(", ")}\nAdd them in Settings → Variables and Secrets, deploy, then open /setup again.`);
       const res = await telegram(env, "setWebhook", {
@@ -74,7 +73,7 @@ async function onMessage(msg, env) {
     body: JSON.stringify({
       input: {
         prompt,
-        trigger: env.TRIGGER_WORD,
+        trigger: env.TRIGGER_WORD || "",
         lora_url: env.LORA_URL,
         lora_strength: Number(env.LORA_STRENGTH || 0.9),
         width: Number(env.WIDTH || 1024),

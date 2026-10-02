@@ -38,18 +38,17 @@ Copy the **Endpoint ID** (top of the endpoint page). Also make an API key: Setti
 | `RUNPOD_API_KEY` | your RunPod API key |
 | `RUNPOD_ENDPOINT_ID` | your endpoint ID |
 | `LORA_URL` | your LoRA download link |
-| `TRIGGER_WORD` | e.g. `zvx woman` |
 
 4. Open `https://<your-worker>.workers.dev/setup` → you should see **✅ Bot connected!**
 5. Message your bot → it replies with **your Telegram ID** → add it as `OWNER_ID` → Deploy. Done 🎉
 
 ## Using it
-Just describe the photo: shot, outfit, place, light. The trigger word is added for you.
+Start with your trigger word, then the shot, outfit, place, light.
 Don't describe her face or hair, the LoRA knows her.
 
 ⏱ First photo after a break: **1–2 min** (the GPU wakes up and downloads your LoRA). After that: **a few seconds**.
 
-Optional variables: `LORA_STRENGTH` (default `0.9`), `WIDTH` / `HEIGHT` (default `1024` × `1536`).
+Optional variables: `TRIGGER_WORD` (added for you if a prompt doesn't start with it), `LORA_STRENGTH` (default `0.9`), `WIDTH` / `HEIGHT` (default `1024` × `1536`).
 
 ## Troubleshooting
 - **Bot doesn't answer:** open `/setup` again.
