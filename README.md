@@ -54,4 +54,4 @@ Optional variables: `TRIGGER_WORD` (added for you if a prompt doesn't start with
 - **Bot doesn't answer:** open `/setup` again.
 - **"RunPod rejected the API key" / "can't find that endpoint":** check those two variables.
 - **"the LoRA link didn't give me a .safetensors file":** the link opens a web page, not the file. For Google Drive: sharing must be *Anyone with the link*.
-- **Not her face:** check `TRIGGER_WORD` is exactly the one you trained with; try `LORA_STRENGTH` = `1.0`.
+- **Not her face:** start the prompt with exactly the trigger word you trained with; try `LORA_STRENGTH` = `1.0`.
