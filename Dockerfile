@@ -28,7 +28,7 @@ RUN git clone --depth 1 --branch ${COMFY_TAG} https://github.com/comfyanonymous/
     && rm -rf /tmp/comfy-new/models /tmp/comfy-new/custom_nodes \
     && cp -a /tmp/comfy-new/. /comfyui/ && rm -rf /tmp/comfy-new \
     && uv pip install -r /comfyui/requirements.txt \
-    && uv pip install "transformers>=4.50.3,<5" "huggingface-hub<1.0" gdown
+    && uv pip install "transformers>=4.50.3,<5" "huggingface-hub<1.0"
 
 # boot ComfyUI once on CPU: a broken install fails the BUILD, not your first Telegram message
 RUN cd /comfyui && timeout 300 python main.py --quick-test-for-ci --cpu

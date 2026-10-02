@@ -15,6 +15,7 @@ import hashlib
 import io
 import os
 import random
+import re
 import time
 import uuid
 
@@ -88,7 +89,17 @@ def generate(wf, timeout=600):
 
 
 # ------------------------------------------------------------------ LoRA download (cached per worker)
+def drive_id(url):
+    """File id from any Google Drive share link."""
+    m = re.search(r"/file/d/([A-Za-z0-9_-]{10,})", url) or re.search(r"[?&]id=([A-Za-z0-9_-]{10,})", url)
+    return m.group(1) if m else None
+
+
 def direct_link(url):
+    if "drive.google.com" in url or "drive.usercontent.google.com" in url:
+        fid = drive_id(url)
+        if fid:  # confirm=t skips Google's "can't scan this big file for viruses" page
+            return f"https://drive.usercontent.google.com/download?id={fid}&export=download&confirm=t"
     if "dropbox.com" in url:
         url = url.replace("dl=0", "dl=1")
         if "dl=1" not in url:
@@ -106,15 +117,11 @@ def fetch_lora(url):
         return name
     tmp = path + ".part"
     log("downloading LoRA")
-    if "drive.google.com" in url:
-        import gdown
-        gdown.download(url, tmp, quiet=True, fuzzy=True)
-    else:
-        with requests.get(direct_link(url), stream=True, timeout=60, allow_redirects=True) as r:
-            r.raise_for_status()
-            with open(tmp, "wb") as f:
-                for chunk in r.iter_content(8 << 20):
-                    f.write(chunk)
+    with requests.get(direct_link(url), stream=True, timeout=60, allow_redirects=True) as r:
+        r.raise_for_status()
+        with open(tmp, "wb") as f:
+            for chunk in r.iter_content(8 << 20):
+                f.write(chunk)
     ok = False
     if os.path.exists(tmp) and os.path.getsize(tmp) > 1_000_000:
         with open(tmp, "rb") as f:
