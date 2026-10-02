@@ -1,0 +1,14 @@
+{
+  "title": "AI Empire · Telegram Generator (Krea 2 Turbo + your LoRA)",
+  "description": "Text your Telegram bot, get a photo of your AI influencer. Krea 2 Turbo + your character LoRA; the photo is sent straight to your chat. Pair it with the free Cloudflare bot from the repo.",
+  "type": "serverless",
+  "category": "image",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 30,
+    "gpuIds": "ADA_24,AMPERE_24,AMPERE_48,ADA_48_PRO",
+    "gpuCount": 1,
+    "allowedCudaVersions": ["12.8", "12.9", "13.0", "13.1", "13.2"],
+    "env": []
+  }
+}
