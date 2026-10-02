@@ -8,7 +8,7 @@
 //   RUNPOD_ENDPOINT_ID   your serverless endpoint's ID
 //   LORA_URL             direct download link to your LoRA .safetensors
 //   OWNER_ID             your Telegram ID (the bot tells you it on your first message)
-// Optional: TRIGGER_WORD (added to prompts that don't start with it), LORA_STRENGTH (0.9), WIDTH (1024), HEIGHT (1536)
+// Optional: LORA_STRENGTH (0.9), WIDTH (1024), HEIGHT (1536)
 
 const HELP = [
   "👋 Send me what you want to see, for example:",
@@ -73,7 +73,6 @@ async function onMessage(msg, env) {
     body: JSON.stringify({
       input: {
         prompt,
-        trigger: env.TRIGGER_WORD || "",
         lora_url: env.LORA_URL,
         lora_strength: Number(env.LORA_STRENGTH || 0.9),
         width: Number(env.WIDTH || 1024),
