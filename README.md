@@ -101,7 +101,7 @@ Send `/start` or `/help` to see a short help message.
 ### How long it takes
 
 - First photo after a break: **1 to 2 minutes**. The GPU wakes up and downloads your LoRA.
-- After that: **a few seconds** each.
+- After that: about **20 seconds** each, and about 1 cent for every 3 photos (October 2026).
 
 The bot replies "On it…" as soon as RunPod takes the job.
 
