@@ -1,5 +1,6 @@
 # AI Empire · Your own Telegram generator
 
+**▶ New here? Start with the free video series: [joinaiempire.com/video](https://joinaiempire.com/video)** (video 1: make your first AI face).
 Guides and the full course: https://joinaiempire.com
 
 Text your bot a prompt. A photo of **your** AI character arrives in the chat.

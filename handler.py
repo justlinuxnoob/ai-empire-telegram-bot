@@ -1,7 +1,8 @@
 """AI Empire · Telegram generator: RunPod serverless handler.
 
 Job input (sent by the Cloudflare bot):
-  prompt          what to make, e.g. "beach club, white bikini, golden hour"
+  prompt          what to make: trigger word, a short hair-and-eyes line, then the scene, e.g.
+                  "zvx woman, long wavy dark brown hair, hazel eyes, beach club, white bikini, golden hour"
   trigger         LoRA trigger word, added in front of the prompt if missing (e.g. "zvx woman")
   lora_url        direct link to your LoRA .safetensors (Hugging Face, Dropbox or Google Drive)
   lora_strength   default 0.9

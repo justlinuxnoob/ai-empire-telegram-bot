@@ -11,12 +11,13 @@
 // Optional: LORA_STRENGTH (0.9), WIDTH (1024), HEIGHT (1536)
 
 const HELP = [
-  "👋 Send me what you want to see, for example:",
+  "👋 Send me what you want to see. Start with your trigger word, then her hair and eyes in a few words, then the scene. For example:",
   "",
-  "beach club, white bikini, golden hour",
-  "mirror selfie in a hotel bathroom, black satin dress",
+  "zvx woman, long wavy dark brown hair, hazel eyes, sitting at a beach club, white bikini, golden hour, medium shot",
+  "zvx woman, long wavy dark brown hair, hazel eyes, mirror selfie in a hotel bathroom, black satin dress, full body",
   "",
-  "Start with your trigger word. Don't describe her face or hair: the LoRA knows her.",
+  "Use your own trigger word and her hair and eyes. Don't describe her face shape, makeup, skin or body: the LoRA knows her.",
+  "I add \"candid smartphone photo, natural skin texture\" at the end if you leave it out.",
   "The first photo after a break takes 1–2 minutes (the GPU wakes up), then a few seconds each.",
 ].join("\n");
 
